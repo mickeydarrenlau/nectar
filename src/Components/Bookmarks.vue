@@ -36,12 +36,9 @@
         class="bookmark group backdrop-blur-md border border-gray-500/50 p-3 md:p-4 flex flex-col gap-2 rounded-xl shadow-md overflow-hidden active:shadow-orange-400/50 active:shadow-lg hover:border-orange-300 hover:shadow-lg transition duration-300"
         v-for="(bookmark, index) in filteredBookmarks"
         :key="index"
-        v-motion
-        :initial="{ opacity: 0, y: 10 }"
-        :enter="{ opacity: 1, y: 0, scale: 1 }"
-        :hovered="{ scale: 1.025 }"
-        :delay="index * 50"
-      >
+        data-aos="fade-up"
+        :data-aos-delay="index * 50" 
+        data-aos-once="true"         >
         <div
           class="icon size-12 md:size-14 bg-white/10 p-1.5 flex justify-center items-center rounded-md overflow-hidden group-hover:bg-white/15 transition-all duration-300"
         >
@@ -73,6 +70,10 @@
 </template>
 
 <script>
+
+import AOS from 'aos';
+import 'aos/dist/aos.css'
+
 export default {
   data() {
     return {
@@ -85,6 +86,7 @@ export default {
   },
 
   mounted() {
+    AOS.init()
     this.getBookmarkCategories();
     this.getBookmarks();
     this.filterBookmarks();
@@ -107,7 +109,9 @@ export default {
       await fetch("/api/bookmarks")
         .then((response) => response.json())
         .then((data) => {
+          setTimeout(() => {
           this.bookmarks = data;
+          },0)
           this.filteredBookmarks = data;
         });
     },

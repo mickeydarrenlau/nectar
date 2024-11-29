@@ -34,11 +34,9 @@
         class="app group backdrop-blur-md border border-gray-500/50 p-3 md:p-4 flex items-center gap-4 rounded-xl shadow-md overflow-hidden active:shadow-pink-500/50 active:shadow-lg hover:border-pink-400 hover:shadow-lg transition duration-300"
         v-for="(app, index) in filteredApps"
         :key="index"
-        v-motion
-        :initial="{ opacity: 0, y: 10 }"
-        :enter="{ opacity: 1, y: 0, scale: 1 }"
-        :hovered="{ scale: 1.025 }"
-        :delay="index * 50"
+         data-aos="fade-up"
+        :data-aos-delay="index * 50"
+        data-aos-once="true"
       >
         <div
           class="icon size-11 md:size-12 bg-white/10 p-1.5 flex justify-center items-center rounded-md overflow-hidden group-hover:bg-white/15 transition-all duration-300"
@@ -63,6 +61,10 @@
 </template>
 
 <script>
+
+import AOS from 'aos';
+import 'aos/dist/aos.css'
+
 export default {
   data() {
     return {
@@ -75,6 +77,7 @@ export default {
   },
 
   mounted() {
+    AOS.init()
     this.getServers();
     this.getApps();
     this.filterApps();
@@ -103,8 +106,9 @@ export default {
       if ((this.server === null || this.server === "null") && this.search === "") {
         return;
       }
-
+      
       let apps = this.apps;
+     
 
       if (this.server && this.server !== "null") {
         apps = Object.fromEntries(

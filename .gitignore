@@ -26,3 +26,4 @@ dist-ssr
 public/wallpapers/*
 nectar.db-shm
 nectar.db-wal
+config.json

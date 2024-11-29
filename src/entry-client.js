@@ -7,4 +7,6 @@ const { app } = createApp()
 
 app.use(MotionPlugin)
 
+
 app.mount('#app')
+

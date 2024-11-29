@@ -8,11 +8,9 @@
         class="server backdrop-blur-md border border-gray-500/50 p-4 flex flex-col gap-4 rounded-xl shadow-md overflow-hidden active:shadow-blue-500/50 active:shadow-lg hover:border-sky-400 hover:shadow-lg transition duration-300"
         v-for="(server, index) in servers"
         :key="index"
-        v-motion
-        :initial="{ opacity: 0, y: 10 }"
-        :enter="{ opacity: 1, y: 0, scale: 1 }"
-        :hovered="{ scale: 1.025 }"
-        :delay="index * 50"
+        data-aos="fade-up"        
+        :data-aos-delay="index * 50"
+        data-aos-once="true"
       >
         <div class="server-details flex items-center gap-4">
           <svg
@@ -92,15 +90,26 @@
 </template>
 
 <script>
+import AOS from 'aos'; 
+import 'aos/dist/aos.css'
 export default {
   data() {
     return {
       servers: [],
+        motions: {
+        initial: { opacity: 0, y: 10 },
+        enter: { opacity: 1, y: 0, scale: 1 },
+        hovered: { scale: 1.025 },
+        delay: 'index * 50'
+        }
+
     };
   },
 
   mounted() {
-    this.getServers();
+
+    AOS.init()    
+    this.getServers()
   },
 
   methods: {
@@ -108,9 +117,12 @@ export default {
       await fetch("/api/servers")
         .then((response) => response.json())
         .then((data) => {
+          setTimeout(() => {
           this.servers = data;
+         },0)
         });
     },
   },
 };
 </script>
+

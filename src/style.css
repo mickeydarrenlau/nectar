@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.icon { flex-shrink: 0;
+}
+.app.group > .flex { min-width: 0;
+}
+.app.group > .flex > h1 { overflow-x: hidden; white-space: 
+    nowrap;
+}
+
+.app.group > .flex > h1 { 
+    
+text-overflow: ellipsis;
+    display: inline-block;
+
+
+}
+
+:root::-webkit-scrollbar{
+  display: none;
+}
+
+:root {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
