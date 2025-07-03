@@ -36,6 +36,17 @@ CREATE TABLE "settings" (
   PRIMARY KEY ("name")
 );
 
+DROP TABLE IF EXISTS "settings_internal";
+CREATE TABLE "settings_internal" (
+  "name" TEXT NOT NULL,
+  "value" TEXT NOT NULL,
+  PRIMARY KEY ("name")
+);
+
+/*
+ Edit this into your own prefrence
+*/
+
 BEGIN;
 INSERT INTO "settings" ("name", "value") VALUES ("time.time_format", '12h');
 INSERT INTO "settings" ("name", "value") VALUES ("weather.enabled", 'true');
