@@ -35,14 +35,12 @@ export default {
   },
 
   mounted() {
-    const wallpapers = Object.entries(import.meta.glob("/public/wallpapers/*"));
-
-    const season = Math.floor((new Date().getMonth() + 1) / (12 / wallpapers.length));
+    //const wallpapers = Object.entries(import.meta.glob("/public/wallpapers/*"));
 
     const wallpaper = document.querySelector(".wallpaper");
 
     if (wallpaper) {
-      wallpaper.style.backgroundImage = `url('${wallpapers[season][0]}')`;
+      wallpaper.style.backgroundImage = `url('/public/wallpapers/background.jpg')`;
     }
   },
 };
