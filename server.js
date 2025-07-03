@@ -1,6 +1,6 @@
 import express from 'express';
 import config from "./config.json" with { type: "json" };
-
+import fs from 'node:fs/promises'
 
 import { createClient } from "@libsql/client";
 const db  = createClient({
